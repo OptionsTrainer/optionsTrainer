@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CommonTextFields extends StatelessWidget {
   final String label;
@@ -17,7 +18,7 @@ class CommonTextFields extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(fontSize: 14),
+          style: GoogleFonts.poppins(fontSize: 14),
         ),
         TextField(
           controller: controller,

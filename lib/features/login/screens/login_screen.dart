@@ -42,7 +42,10 @@ class LoginScreen extends StatelessWidget {
                         width: double.maxFinite,
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: const Text("Sign-In"),
+                          child: Text(
+                            "Sign-In",
+                            style: GoogleFonts.poppins(),
+                          ),
                         ),
                       ),
                     ],
@@ -57,14 +60,17 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Text("Forget Password, "),
+                      Text(
+                        "Forget Password, ",
+                        style: GoogleFonts.poppins(),
+                      ),
                       GestureDetector(
                         onTap: () {
                           context.pushNamed(RoutesName.forgetPassword);
                         },
-                        child: const Text(
+                        child: Text(
                           "click here",
-                          style: TextStyle(color: Colors.blue),
+                          style: GoogleFonts.poppins(color: Colors.blue),
                         ),
                       ),
                     ],
@@ -72,14 +78,17 @@ class LoginScreen extends StatelessWidget {
                   const Gap(10),
                   Row(
                     children: [
-                      const Text("New Registrtion, "),
+                      Text(
+                        "New Registrtion, ",
+                        style: GoogleFonts.poppins(),
+                      ),
                       GestureDetector(
                         onTap: () {
                           context.pushNamed(RoutesName.signUp);
                         },
-                        child: const Text(
+                        child: Text(
                           "sign up here",
-                          style: TextStyle(color: Colors.blue),
+                          style: GoogleFonts.poppins(color: Colors.blue),
                         ),
                       ),
                     ],
