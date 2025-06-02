@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paper_trading/core/common_widgets/common_text_fields.dart';
+import 'package:paper_trading/core/common_widgets/primary_button.dart';
 import 'package:paper_trading/routes/routes_name.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -38,15 +39,9 @@ class LoginScreen extends StatelessWidget {
                         label: "Password",
                       ),
                       const Gap(15),
-                      SizedBox(
-                        width: double.maxFinite,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Sign-In",
-                            style: GoogleFonts.poppins(),
-                          ),
-                        ),
+                      PrimaryButton(
+                        buttonText: "Sign-In",
+                        onPressed: () {},
                       ),
                     ],
                   ),
