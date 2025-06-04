@@ -108,7 +108,6 @@ class _ButtonBackgroundColor implements WidgetStateProperty<Color?> {
 
   @override
   Color? resolve(Set<WidgetState> states) {
-    print("States:= $states");
     if (reveredButton) {
       if (states.isPressed) return Colors.grey[100];
       if (states.isDisabled) return Colors.grey[400];
@@ -132,7 +131,6 @@ class _ButtonForegroundColor implements WidgetStateProperty<Color?> {
 
   @override
   Color? resolve(Set<WidgetState> states) {
-    print("_ButtonForegroundColor:= $states");
     if (reveredButton) {
       if (states.isDisabled) return Colors.grey[400];
       return Colors.grey[400];
