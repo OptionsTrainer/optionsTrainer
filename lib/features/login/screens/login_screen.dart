@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:paper_trading/core/common_widgets/common_snackbar.dart';
 import 'package:paper_trading/core/common_widgets/common_text_fields.dart';
 import 'package:paper_trading/core/common_widgets/primary_button.dart';
+import 'package:paper_trading/features/login/providers/authentication_provider.dart';
 import 'package:paper_trading/routes/routes_name.dart';
 import 'package:paper_trading/utils/common_utils.dart';
 
@@ -21,6 +24,7 @@ class LoginScreen extends HookWidget {
     final passwordController = useTextEditingController();
     final isShowPassword = useState<bool>(false);
     final isButtonEnable = useState<bool>(false);
+    final isLoading = useState<bool>(false);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -74,13 +78,42 @@ class LoginScreen extends HookWidget {
                           ),
                         ),
                         const Gap(15),
-                        PrimaryButton(
-                          buttonText: "Sign-In",
-                          enabled: isButtonEnable.value,
-                          onPressed: () {
-                            if(formKey.currentState?.validate() == true) {
-                            }
-                          },
+                        Consumer(
+                          builder: (context, ref, _) {
+                            final authNotifier = ref.read(authenticationProviderProvider.notifier);
+                            return PrimaryButton(
+                              buttonText: "Sign-In",
+                              enabled: isButtonEnable.value,
+                              isBusy: isLoading.value,
+                              onPressed: () async {
+                                if (formKey.currentState?.validate() == true) {
+                                  isLoading.value = true;
+                                  final userValue = await authNotifier.signIn(
+                                    emailController.text,
+                                    passwordController.text,
+                                  );
+                                  isLoading.value = false;
+                                  if (!context.mounted) return;
+                                  if (userValue == null) {
+                                    CommonSnackBar.showSnackBar(
+                                      context: context,
+                                      backgroundColor: Colors.white,
+                                      msgColor: Colors.red,
+                                      msg: "Incorrect mail or password"
+                                    );
+                                  } else {
+                                    CommonSnackBar.showSnackBar(
+                                      context: context,
+                                      backgroundColor: Colors.white,
+                                      msgColor: Colors.green,
+                                      msg: 'Logged-in Successfully',
+                                    );
+                                    context.goNamed(RoutesName.home);
+                                  }
+                                }
+                              },
+                            );
+                          }
                         ),
                       ],
                     ),

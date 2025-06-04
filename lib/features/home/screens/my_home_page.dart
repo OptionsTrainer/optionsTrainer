@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:paper_trading/features/login/providers/authentication_provider.dart';
 import 'package:paper_trading/routes/routes_name.dart';
 import 'package:paper_trading/utils/string_constants.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authNotifier = ref.read(authenticationProviderProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -20,8 +23,11 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             const Placeholder(),
             ElevatedButton(
-              onPressed: () => context.pushNamed(RoutesName.login),
-              child: const Text("Login"),
+              onPressed: () {
+                authNotifier.signOut();
+                context.goNamed(RoutesName.login);
+              },
+              child: const Text("Logout"),
             ),
           ],
         ),

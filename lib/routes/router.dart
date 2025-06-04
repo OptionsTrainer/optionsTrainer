@@ -9,17 +9,9 @@ import 'package:paper_trading/routes/routes_name.dart';
 /// The route configuration.
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
+    //login initial route
     GoRoute(
       path: '/',
-      name: RoutesName.initial,
-      builder: (BuildContext context, GoRouterState state) {
-        return const MyHomePage();
-      },
-    ),
-
-    //login
-    GoRoute(
-      path: '/login',
       name: RoutesName.login,
       builder: (BuildContext context, GoRouterState state) {
         return const LoginScreen();
@@ -41,6 +33,15 @@ final GoRouter router = GoRouter(
       name: RoutesName.forgetPassword,
       builder: (BuildContext context, GoRouterState state) {
         return const ForgetPasswordScreen();
+      },
+    ),
+
+    //home page
+    GoRoute(
+      path: '/home',
+      name: RoutesName.home,
+      builder: (BuildContext context, GoRouterState state) {
+        return const MyHomePage();
       },
     ),
   ],

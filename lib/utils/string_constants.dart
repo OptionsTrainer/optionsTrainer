@@ -3,4 +3,10 @@ class StringConstants {
   const StringConstants._();
 
   static const String appTitle = "Paper Trading";
+
+  static const String someThingWentWrong = "Something went wrong";
+
+
+
+
 }
