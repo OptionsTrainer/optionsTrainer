@@ -34,6 +34,19 @@ class CommonUtils {
     return null;
   }
 
+  //name validator
+  String? validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Name cannot be empty';
+    }
+
+    if (value.length < 3 || value.length > 20) {
+      return 'Name must be at-least 3 characters long';
+    }
+
+    return null;
+  }
+
 
 
 }
