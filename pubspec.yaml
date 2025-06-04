@@ -42,6 +42,7 @@ dependencies:
   #state-management
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
+  flutter_hooks: ^0.21.2
 
   #UI/UX
   gap: ^3.0.1
